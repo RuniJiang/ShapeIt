@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     private GameObject coloredShape;
     public List<GameObject> targetShape;
     private bool isCompleted;
-    
+
+    public AudioSource soundsEffect;
+    public GameObject Congrats;
 
     void Awake()
     {
@@ -29,7 +31,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if(!isCompleted)
+        {
+            Move();
+        }
+        
         
     }
 
@@ -52,6 +58,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Shape")
         {
+            soundsEffect.Play();
             frown.SetActive(false);
             smile.SetActive(true);
             coloredShape = other.GetComponent<Shape>().activeShape;
@@ -78,6 +85,9 @@ public class Player : MonoBehaviour
                     {
                         
                         isCompleted = true;
+                        Congrats.SetActive(true);
+                        GameManager.Instance.Congrats();
+   
                         Debug.Log("Congrats!");
                     }
                 }

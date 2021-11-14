@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StartGame : MonoBehaviour
+public class Credits : MonoBehaviour
 {
     AudioSource start;
+    public GameObject Info;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +23,12 @@ public class StartGame : MonoBehaviour
 
     void OnClick()
     {
-        SceneManager.LoadScene("Level1");
-
         start.Play();
+        Info.SetActive(true);
+    }
 
+    public void Close()
+    {
+        Info.SetActive(false);
     }
 }

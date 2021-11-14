@@ -45,4 +45,12 @@ public class Shape : MonoBehaviour
             shapeType[rng].SetActive(true);
         }
     }
+
+    public void ColorChange()
+    {
+        activeShape.SetActive(false);
+        rng = Random.Range(0, 5);
+        activeShape = shapeType[rng];
+        shapeType[rng].SetActive(true);
+    }
 }
